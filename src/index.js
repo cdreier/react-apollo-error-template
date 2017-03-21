@@ -6,9 +6,12 @@ import { ApolloClient, ApolloProvider } from 'react-apollo';
 import { networkInterface } from './graphql/networkInterface';
 import App from './App';
 
+import configureStore from './config/store'
+
 const client = new ApolloClient({ networkInterface });
+const store = configureStore(client, {})
 
 ReactDOM.render(
-  <ApolloProvider client={client}><App /></ApolloProvider>,
+  <ApolloProvider client={client} store={store} ><App /></ApolloProvider>,
   document.getElementById('root'),
 );

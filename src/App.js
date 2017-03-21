@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { gql, graphql } from 'react-apollo';
+
+import Listing from './reproduction/ListContainer'
 
 class App extends Component {
   render() {
-    const { data: { loading, people } } = this.props;
     return (
       <main>
         <header>
@@ -20,27 +20,10 @@ class App extends Component {
             Currently the schema just serves a list of people with names and ids.
           </p>
         </header>
-        {loading ? (
-          <p>Loading…</p>
-        ) : (
-          <ul>
-            {people.map(person => (
-              <li key={person.id}>
-                {person.name}
-              </li>
-            ))}
-          </ul>
-        )}
+        <Listing />
       </main>
     );
   }
 }
 
-export default graphql(
-  gql`{
-    people {
-      id
-      name
-    }
-  }`,
-)(App)
+export default (App)
